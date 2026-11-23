@@ -2,9 +2,7 @@ from fastapi import FastAPI
 import pickle
 import numpy as np
 from pydantic import BaseModel, Field
-from flask import request, Flask
 
-app = Flask(__name__)
 # 1. Initialize FastAPI app
 app = FastAPI(title="SVC Classification API", version="1.0")
 
@@ -61,5 +59,4 @@ def predict_endpoint(input_data: ModelInput):
         "prediction": int(prediction[0]),
         "probability": float(np.max(prediction_proba)) if prediction_proba is not None else "Not available"
     }
-  if __name__=="__main__":
-    app.run(debug=True)
+
