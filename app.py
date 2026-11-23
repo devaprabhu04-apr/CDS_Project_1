@@ -59,4 +59,12 @@ def predict_endpoint(input_data: ModelInput):
         "prediction": int(prediction[0]),
         "probability": float(np.max(prediction_proba)) if prediction_proba is not None else "Not available"
     }
+import os
+import uvicorn
 
+# ... (your FastAPI app, routes, and model loading code stay right here) ...
+
+if __name__ == "__main__":
+    # Render assigns a dynamic port via environment variables, default to 8000 locally
+    port = int(os.environ.get("PORT", 8000))
+    uvicorn.run("app:app", host="0.0.0.0", port=port)
